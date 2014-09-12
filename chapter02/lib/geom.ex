@@ -36,4 +36,12 @@ defmodule Geom do
     area(:ellipse, length, width)
   end
 
+  def area3(shape, a, b) when a > 0 and b > 0 do
+    case shape do
+      :rectangle -> a * b
+      :triangle -> a * b / 2
+      :ellipse -> :math.pi() * a * b
+    end
+  end
+
 end

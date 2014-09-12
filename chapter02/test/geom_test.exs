@@ -36,4 +36,10 @@ defmodule GeomTest do
     assert Geom.area2({:ellipse, 7, 3}) == 65.97344572538566
   end
 
+  test "Etude 4-1 case statement" do
+    assert Geom.area3(:rectangle, 3, 4) == 12
+    assert Geom.area3(:triangle, 3, 5) == 7.5
+    assert Geom.area3(:ellipse, 2, 4) == 25.132741228718345
+  end
+
 end
