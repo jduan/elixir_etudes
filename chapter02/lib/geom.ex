@@ -24,4 +24,16 @@ defmodule Geom do
     :math.pi() * major_radius * minor_radius
   end
 
+  def area2({:rectangle, length, width}) do
+    area(:rectangle, length, width)
+  end
+
+  def area2({:triangle, length, width}) do
+    area(:triangle, length, width)
+  end
+
+  def area2({:ellipse, length, width}) do
+    area(:ellipse, length, width)
+  end
+
 end

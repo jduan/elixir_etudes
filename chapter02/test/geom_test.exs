@@ -30,4 +30,10 @@ defmodule GeomTest do
     end
   end
 
+  test "Etude 3-4 tuple as parameters" do
+    assert Geom.area2({:rectangle, 7, 3}) == 21
+    assert Geom.area2({:triangle, 7, 3}) == 10.5
+    assert Geom.area2({:ellipse, 7, 3}) == 65.97344572538566
+  end
+
 end
