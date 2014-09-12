@@ -1,14 +1,18 @@
 defmodule Stats do
-  def minimum([x]), do: x
+  def minimum([head|tail]), do: do_minimum(tail, head)
 
-  def minimum([head|tail]) do
-    min(head, minimum(tail))
+  defp do_minimum([], min_so_far), do: min_so_far
+
+  defp do_minimum([head|tail], min_so_far) do
+    do_minimum(tail, min(head, min_so_far))
   end
 
-  def maximum([x]), do: x
+  def maximum([head|tail]), do: do_maximum(tail, head)
 
-  def maximum([head|tail]) do
-    max(head, maximum(tail))
+  defp do_maximum([], max_so_far), do: max_so_far
+
+  defp do_maximum([head|tail], max_so_far) do
+    do_maximum(tail, max(head, max_so_far))
   end
 
   def range(lst), do: [minimum(lst), maximum(lst)]
