@@ -22,4 +22,18 @@ defmodule Powers do
 
   def raise2(x, n, acc), do: raise2(x, n - 1, acc * x)
 
+  def nth_root(x, n), do: nth_root(x, n, x / 2.0)
+
+  defp nth_root(x, n, a) do
+    IO.puts "current guess is #{a}"
+    f = raise(a, n) - x
+    f_prime = n * raise(a, n - 1)
+    next = a - f / f_prime
+    change = abs(next - a)
+    if change < 1.0e-8 do
+      next
+    else
+      nth_root(x, n, next)
+    end
+  end
 end
