@@ -17,6 +17,21 @@ defmodule Geography do
     process_lines(nil, lines, [])
   end
 
+  def total_population(countries, language) do
+    countries
+    |> Enum.filter(fn country -> country.language == language end)
+    |> Enum.reduce(0, fn country, acc ->
+      acc + total_population_cities(country.cities)
+    end)
+  end
+
+  def total_population_cities(cities) do
+    cities
+    |> Enum.reduce(0, fn city, acc ->
+      acc + city.population
+    end)
+  end
+
   # no more lines
   defp process_lines(_country, [], countries) do
     countries

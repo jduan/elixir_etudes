@@ -44,5 +44,8 @@ defmodule GeographyTest do
     ]
     country_list = Geography.make_geo_list_helper(input_str)
     assert country_list == expected_country_list
+
+    total_population = Geography.total_population(country_list, "Korean")
+    assert total_population == (2566540 + 3678555 + 10349312)
   end
 end
