@@ -34,7 +34,7 @@ defimpl Inspect, for: City do
       concat(to_string(Float.round(longitude * 1.0, 2)), "°E")
     end
 
-    msg = concat([name, break,
+    concat([name, break,
       "(", to_string(population), ")", break,
       lat, break, lon])
   end
