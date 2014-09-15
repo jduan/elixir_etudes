@@ -48,4 +48,11 @@ defmodule GeographyTest do
     total_population = Geography.total_population(country_list, "Korean")
     assert total_population == (2566540 + 3678555 + 10349312)
   end
+
+  test "City.valid?" do
+    valid_city = %City{latitude: 35.87028, longitude: 128.59111, name: "Daegu", population: 2566540}
+    assert Valid.valid?(valid_city)
+    invalid_city = %City{latitude: 135.87028, longitude: 128.59111, name: "Daegu", population: 2566540}
+    refute Valid.valid?(invalid_city)
+  end
 end

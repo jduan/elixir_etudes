@@ -6,6 +6,18 @@ defmodule City do
   defstruct latitude: 0, longitude: 0, name: "", population: 0
 end
 
+defprotocol Valid do
+  @doc "Return true if the data is considered valid"
+  def valid?(data)
+end
+
+defimpl Valid, for: City do
+  def valid?(city) do
+    city.population >= 0 and city.latitude in -90..90 and
+    city.longitude in -180..180
+  end
+end
+
 defmodule Geography do
   def make_geo_list(filename) do
     {:ok, content} = File.read(filename, [:read, :utf8])
