@@ -12,9 +12,31 @@ defprotocol Valid do
 end
 
 defimpl Valid, for: City do
-  def valid?(city) do
-    city.population >= 0 and city.latitude in -90..90 and
-    city.longitude in -180..180
+  def valid?(%City{latitude: lat, longitude: lon, population: p}) do
+    p >= 0 and lat in -90..90 and lon in -180..180
+  end
+end
+
+defimpl Inspect, for: City do
+  import Inspect.Algebra
+
+  def inspect(%City{latitude: latitude, longitude: longitude, population:
+    population, name: name}, _options) do
+    lat = if (latitude < 0) do
+      concat(to_string(Float.round(abs(latitude * 1.0), 2)), "°S")
+    else
+      concat(to_string(Float.round(latitude * 1.0, 2)), "°N")
+    end
+
+    lon = if (longitude < 0) do
+      concat(to_string(Float.round(abs(longitude * 1.0), 2)), "°W")
+    else
+      concat(to_string(Float.round(longitude * 1.0, 2)), "°E")
+    end
+
+    msg = concat([name, break,
+      "(", to_string(population), ")", break,
+      lat, break, lon])
   end
 end
 
