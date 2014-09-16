@@ -9,4 +9,10 @@ defmodule StatsTest do
     assert Stats.maximum([52, 46]) == 52
     assert Stats.range(data) == [-17, 8]
   end
+
+  test "mean and standard deviation" do
+    data = [7, 2, 9]
+    assert Stats.mean(data) == 6.0
+    assert Stats.stdv(data) == 3.60555127546398912486
+  end
 end
