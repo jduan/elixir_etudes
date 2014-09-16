@@ -15,7 +15,8 @@ defmodule Dates do
       months_list = @days_in_months
     end
 
-    do_months(month - 1, months_list, 0) + day
+    # do_months(month - 1, months_list, 0) + day
+    do_months2(month - 1, months_list) + day
   end
 
   defp is_leap(year) do
@@ -29,5 +30,10 @@ defmodule Dates do
   defp do_months(month, days_in_months, acc) do
     [head|tail] = days_in_months
     do_months(month - 1, tail, acc + head)
+  end
+
+  defp do_months2(month, days_in_months) do
+    {months, _} = Enum.split(days_in_months, month)
+    List.foldl(months, 0, fn x, acc -> x + acc end)
   end
 end
